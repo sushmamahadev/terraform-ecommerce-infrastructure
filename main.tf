@@ -12,7 +12,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "product_assets" {
-  bucket = "${var.project_name}-${var.environment}-product-assets-sushma-01"
+  bucket = local.bucket_name
 
   tags = {
     Environment = var.environment
