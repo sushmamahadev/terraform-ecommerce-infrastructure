@@ -1,4 +1,3 @@
-# 1. Terraform Block
 terraform {
   required_providers {
     aws = {
@@ -8,19 +7,15 @@ terraform {
   }
 }
 
-# 2. Provider Configuration
 provider "aws" {
   region = var.aws_region
 }
 
-# 3. Resource Configuration
 resource "aws_s3_bucket" "product_assets" {
-  bucket = "ecommerce-dev-product-assets-sushma"
+  bucket = "${var.project_name}-${var.environment}-product-assets-sushma-01"
 
   tags = {
-    Environment = "dev"
+    Environment = var.environment
     Purpose     = "product-assets"
   }
-
 }
-
