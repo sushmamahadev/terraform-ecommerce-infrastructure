@@ -1,0 +1,24 @@
+[1mdiff --git a/main.tf b/main.tf[m
+[1mindex f218d40..4fe5dcd 100644[m
+[1m--- a/main.tf[m
+[1m+++ b/main.tf[m
+[36m@@ -10,11 +10,16 @@[m [mterraform {[m
+ [m
+ # 2. Provider Configuration[m
+ provider "aws" {[m
+[31m-  region = "ap-south-1"[m
+[32m+[m[32m  region = var.aws_region[m
+ }[m
+ [m
+ # 3. Resource Configuration[m
+ resource "aws_s3_bucket" "product_assets" {[m
+   bucket = "ecommerce-dev-product-assets-sushma"[m
+ [m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m  tags = {[m
+[32m+[m[32m    Environment = "dev"[m
+[32m+[m[32m    Purpose     = "product-assets"[m
+[32m+[m[32m  }[m
+[32m+[m
+[32m+[m[32m}[m
