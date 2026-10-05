@@ -109,3 +109,6 @@ resource "aws_instance" "web" {
   }
 }
 
+data "aws_region" "current" {}
+
+
