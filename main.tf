@@ -93,6 +93,8 @@ data "aws_ssm_parameter" "amazon_linux" {
 
 
 resource "aws_instance" "web" {
+
+  count         = var.web_instance_count
   ami           = data.aws_ssm_parameter.amazon_linux.value
   instance_type = "t3.micro"
 
@@ -103,7 +105,7 @@ resource "aws_instance" "web" {
   ]
 
   tags = {
-    Name        = "ecommerce-${var.environment}-web"
+    Name        = "ecommerce-${var.environment}-web-${count.index + 1}"
     Environment = var.environment
     Purpose     = "ecommerce-web"
   }
