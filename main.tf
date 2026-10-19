@@ -11,15 +11,12 @@ provider "aws" {
   region = var.aws_region
 }
 
-resource "aws_s3_bucket" "product_assets" {
-  bucket = local.bucket_name
+module "storage" {
 
+  source = "./modules/storage"
 
+  bucket_name = local.bucket_name
 
-  tags = {
-    Environment = var.environment
-    Purpose     = "product-assets"
-  }
 }
 
 
@@ -39,7 +36,7 @@ resource "aws_iam_policy" "product_assets_access" {
           "s3:PutObject"
         ]
 
-        Resource = "${aws_s3_bucket.product_assets.arn}/*"
+        Resource = "${module.storage.bucket_arn}/*"
       }
     ]
   })
@@ -117,5 +114,13 @@ resource "aws_instance" "web" {
 }
 
 data "aws_region" "current" {}
+
+
+
+
+
+
+
+
 
 
