@@ -1,2 +1,2 @@
 environment        = "dev"
-web_instance_count = 1
+web_instance_count = 3
